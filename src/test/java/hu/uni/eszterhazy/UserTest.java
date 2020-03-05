@@ -3,7 +3,7 @@ package hu.uni.eszterhazy;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserAccountTest {
+public class UserTest {
 
     @Before
     public void initClasses(){

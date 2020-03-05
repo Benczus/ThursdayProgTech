@@ -42,4 +42,15 @@ public class BankTest
 
     }
 
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    @Test
+    public void generateNewBankCode() {
+    }
+
+    @Test
+    public void addNewUserAccount() {
+    }
 }
