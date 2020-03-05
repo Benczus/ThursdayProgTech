@@ -1,14 +1,18 @@
 package hu.uni.eszterhazy;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Card
 {
     private String cardNum;
     private String ownerName;
-    private String expDate;
+    private LocalDate expDate;
     private int cvc;
 
 
-    private Card(String cardNum, String ownerName, String expDate, int cvc) {
+    private Card(String cardNum, String ownerName, LocalDate expDate, int cvc) {
         this.cardNum = cardNum;
         this.ownerName = ownerName;
         this.expDate = expDate;
@@ -18,27 +22,41 @@ public class Card
     public static class CardBuilder{
         private String cardNum;
         private String ownerName;
-        private String expDate;
+        private LocalDate expDate;
         private int cvc;
 
         public CardBuilder(String ownerName) {
             this.ownerName = ownerName;
-            this.cardNum= new String();
-            for (int i = 0; i <15 ; i++) {
-                this.cardNum=this.cardNum.concat(Math.rint());
-            }
+            generateCardAttributes();
         }
 
-        public void setCardNum(String cardNum) {
+        public CardBuilder setCardNum(String cardNum) {
             this.cardNum = cardNum;
+            return this;
         }
 
-        public void setExpDate(String expDate) {
+        public CardBuilder setExpDate(LocalDate expDate) {
             this.expDate = expDate;
+            return this;
         }
 
-        public void setCvc(int cvc) {
+        public CardBuilder setCvc(int cvc) {
             this.cvc = cvc;
+            return this;
         }
+
+        private void generateCardAttributes(){
+            this.cardNum= "";
+            for (int i = 0; i <15 ; i++) {
+                this.cardNum=this.cardNum.concat(String.valueOf(ThreadLocalRandom.current().nextInt(0, 9)));
+            }
+            this.expDate = LocalDate.now().plusYears(2);
+            this.cvc= ThreadLocalRandom.current().nextInt(100, 999);
+        }
+
+        public Card build(){
+             return (new Card(this.cardNum, this.ownerName, this.expDate, this.cvc));
+        }
+
     }
 }
