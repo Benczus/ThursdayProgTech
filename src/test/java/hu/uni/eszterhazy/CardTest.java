@@ -1,14 +1,19 @@
 package hu.uni.eszterhazy;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class CardTest {
 
-
+    Card card;
+    String ownerName;
+    int cvc;
     @Before
-    public void initClasses(){
-
+    public void initClasses() {
+        ownerName= "Nagy Pista";
+        cvc=123;
+        card = new Card.CardBuilder(ownerName).setCvc(cvc).build();
     }
 
     @Test
@@ -46,5 +51,11 @@ public class CardTest {
     @Test
     public void isCardDeclined(){
 
+    }
+
+    @Test
+    public void isCardBuilderValid(){
+        Assert.assertEquals(card.getOwnerName(), ownerName);
+        Assert.assertEquals(card.getCvc(), cvc);
     }
 }

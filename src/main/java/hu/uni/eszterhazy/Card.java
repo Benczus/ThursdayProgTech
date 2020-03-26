@@ -11,6 +11,21 @@ public class Card
     private LocalDate expDate;
     private int cvc;
 
+    public String getCardNum() {
+        return cardNum;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public LocalDate getExpDate() {
+        return expDate;
+    }
+
+    public int getCvc() {
+        return cvc;
+    }
 
     private Card(String cardNum, String ownerName, LocalDate expDate, int cvc) {
         this.cardNum = cardNum;

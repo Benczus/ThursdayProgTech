@@ -11,6 +11,7 @@ public class Bank {
     private String location;
     private String name;
     private List<User> userAccountList= new ArrayList<>();
+    private static Bank bank = new Bank(UUID.randomUUID(), "Bogdandy Banking Inc.", "Eger", "Bence Bogdandy", Bank.generateNewBankCode() );
 
     @Override
     public boolean equals(Object o) {
@@ -54,15 +55,12 @@ public class Bank {
         return userAccountList;
     }
 
-    public Bank(UUID bankID, String ownerName, int bankCode, String location, String name) {
-        this.bankID = bankID;
-        this.ownerName = ownerName;
-        this.bankCode = bankCode;
-        this.location = location;
-        this.name = name;
+    public static Bank getBank(){
+        return bank;
     }
 
-    public Bank(UUID bankID, String name, String location, String ownerName, int bankCode) {
+
+    private Bank(UUID bankID, String name, String location, String ownerName, int bankCode) {
     this.bankID=bankID;
     this.name=name;
     this.location=location;

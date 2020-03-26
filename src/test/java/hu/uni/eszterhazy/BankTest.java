@@ -1,29 +1,29 @@
 package hu.uni.eszterhazy;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.UUID;
-
-import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
  */
 public class BankTest
 {
-    /**
-     * Rigorous Test :-)
-     */
+
+    Bank bank;
+    Bank bankSingletonTester;
 
     @Before
     public void initClasses(){
 
-    Bank bank= new Bank(UUID.randomUUID(), "Bogdandy Banking Inc.", "Eger", "Bence Bogdandy", Bank.generateNewBankCode() );
+    bank= Bank.getBank();
+    bankSingletonTester = Bank.getBank();
+
+
     }
-
-
 
 
     @Test
@@ -52,5 +52,12 @@ public class BankTest
 
     @Test
     public void addNewUserAccount() {
+    }
+
+
+
+    @Test
+    public void singletonBehaviour(){
+        Assert.assertEquals(bank, bankSingletonTester);
     }
 }
