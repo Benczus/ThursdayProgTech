@@ -2,13 +2,15 @@ package hu.uni.eszterhazy;
 
 public abstract class Messeger implements Observer{
 
-    String messege;
-    Subject subject;
+    String state;
+    private Subject subject;
 
+    public Messeger(Subject subject) {
+        this.subject = subject;
+    }
 
-
-    public String notifyObserver(String messege){
-        this.messege =messege;
+    public String notifyObserver(){
+        this.state = subject.getState();
         return displayMessage();
     }
 
