@@ -4,15 +4,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class EmployeeTest {
     Employee ceo;
     @Before
     public void setUp() throws Exception {
-        ceo = new EmployeeImpl("Jozsef");
-        Employee bela= new EmployeeImpl("Bela");
-        bela.add(new Accountant("Sándor"));
-        ceo.add(bela);
-        ceo.add(new Accountant("Krisztina"));
+        ceo = new EmployeeImpl("Jozsef", new EmployeeImpl("Béla", new Accountant("Sándor")), new Accountant("Krisztina"));
+
     }
 
     @Test
