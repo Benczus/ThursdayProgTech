@@ -1,8 +1,5 @@
 package hu.uni.eszterhazy;
 
-import com.sun.deploy.util.StringUtils;
-
-import java.util.List;
 
 public class CEODecorator extends EmployeeDecorator {
 

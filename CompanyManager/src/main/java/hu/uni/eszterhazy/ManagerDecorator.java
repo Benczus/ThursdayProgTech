@@ -9,6 +9,17 @@ public class ManagerDecorator extends EmployeeDecorator {
 
     @Override
     public String operation() {
-        return employee.operation() + "and a manager, ";
+        String temp = employee.operation();
+        String[] result = temp.split(",");
+        StringBuilder builder = new StringBuilder();
+        boolean bTemp = true;
+        for (String s : result) {
+            builder.append(s + ",");
+            if (s.equals(" an employee") && bTemp) {
+                builder.append(" and a manager");
+                bTemp = false;
+            }
+        }
+        return builder.toString().replaceAll(" $", "");
     }
 }

@@ -1,8 +1,6 @@
 package hu.uni.eszterhazy;
 
-import java.time.LocalDate;
-
-public class InternetPaymentStrategy implements PaymentStrategy {
+public class InternetPaymentStrategy extends PaymentStrategy {
 
     Card card;
 
@@ -10,8 +8,20 @@ public class InternetPaymentStrategy implements PaymentStrategy {
         this.card = card;
     }
 
+
     @Override
-    public void pay(double amount) {
-        System.out.println("Payment initiated through the internet  with "+ amount +" amount");
+    protected void logout() {
+        System.out.println("Internet Transaction ended with card " + this.card.getCardNum());
+    }
+
+    @Override
+    protected void sendMoney(double amount) {
+        System.out.println("Sent " + amount + " from card " + this.card.getCardNum());
+    }
+
+    @Override
+    protected void authenticate() {
+        //TODO AUTHENTICATE WITH CVC
+        System.out.println("Internet Transaction began with card " + this.card.getCardNum());
     }
 }
