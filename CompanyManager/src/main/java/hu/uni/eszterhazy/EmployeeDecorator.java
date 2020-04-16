@@ -1,7 +1,7 @@
 package hu.uni.eszterhazy;
 
 public abstract class EmployeeDecorator implements Employee {
-    private Employee employee;
+    protected Employee employee;
 
     public EmployeeDecorator(Employee employee) {
         this.employee = employee;
@@ -9,7 +9,7 @@ public abstract class EmployeeDecorator implements Employee {
 
     @Override
     public void add(Employee employee) throws LeafElementException {
-        employee.add(employee);
+        this.employee.add(employee);
     }
 
     @Override

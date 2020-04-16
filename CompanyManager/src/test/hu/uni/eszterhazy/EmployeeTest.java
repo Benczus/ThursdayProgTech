@@ -10,8 +10,11 @@ public class EmployeeTest {
     Employee ceo;
     @Before
     public void setUp() throws Exception {
-        ceo = new EmployeeImpl("Jozsef", new EmployeeImpl("Bela"), new Accountant("Krisztina"));
-
+        ceo = new EmployeeImpl("Jozsef");
+        ceo = new CEODecorator(ceo);
+         Employee managerBela = new ManagerDecorator(new EmployeeImpl("Bela"));
+         ceo.add(managerBela);
+         ceo.add(new Accountant("Krisztina"));
     }
 
     @Test
@@ -25,6 +28,6 @@ public class EmployeeTest {
     @Test
     public void EmployeeDecorator2EmployeesPrintTest() {
 
-        Assert.assertEquals("I am Jozsef, an employee, my employees are : I am Bela, an employee, and a manager, I am Krisztina, an accountant, ", ceo.operation());
+        Assert.assertEquals("I am Jozsef, an employee, and a CEO, my employees are : I am Bela, an employee, and a manager, I am Krisztina, an accountant", ceo.operation());
     }
 }
